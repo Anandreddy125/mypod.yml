@@ -1,10 +1,19 @@
 apiVersion: v1
-kind: Pod
+kind: ReplicationController
 metadata:
- name: hello-pod
- spec:
-  containers:
-  - name: first-container
-    image: nginx
-    ports: 
-    - containerPort: 80
+  name: mylogin-rc
+spec:
+  replicas: 4
+  selector:
+    app: mylogin
+  template:
+    metadata:
+      labels:
+        app: mylogin
+    spec:
+      containers:
+        - name: mylogin-container
+          image: maha4iac/mymahalogin:1
+          ports:
+            - containerPort: 8080
+
