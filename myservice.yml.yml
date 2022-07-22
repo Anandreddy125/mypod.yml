@@ -1,0 +1,14 @@
+apiversion: app/v1
+kind: service
+metadata:
+  name: myjavaapp-svc
+  labels:
+  app: myjavaapp
+spec:
+  type: Nodeport
+  ports:
+  - ports: 8080
+  nodeport: 30001
+  protocol: tcp
+  selector: 
+   app: myjavaapp
